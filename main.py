@@ -22,7 +22,7 @@ class URLRequest(BaseModel):
 # หน้าแรกสำหรับเช็คว่าเซิร์ฟเวอร์ทำงานปกติไหม
 @app.get("/")
 def read_root():
-    data = {"message": "เซิร์ฟเวอร์ IG Scraper ทำงานปกติ!"}
+    data = {"message": "Server is ready"}
     # สั่ง ensure_ascii=False เพื่อบังคับให้แสดงผลเป็นภาษาไทย
     return Response(content=json.dumps(data, ensure_ascii=False), media_type="application/json")
 
