@@ -1,3 +1,5 @@
+import json
+from fastapi import FastAPI, Response
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,7 +22,9 @@ class URLRequest(BaseModel):
 # หน้าแรกสำหรับเช็คว่าเซิร์ฟเวอร์ทำงานปกติไหม
 @app.get("/")
 def read_root():
-    return {"message": "เซิร์ฟเวอร์ IG Scraper ทำงานปกติ!"}
+    data = {"message": "เซิร์ฟเวอร์ IG Scraper ทำงานปกติ!"}
+    # สั่ง ensure_ascii=False เพื่อบังคับให้แสดงผลเป็นภาษาไทย
+    return Response(content=json.dumps(data, ensure_ascii=False), media_type="application/json")
 
 # เส้นทางสำหรับรับ URL จากหน้าเว็บ (เดี๋ยวเราจะเอาโค้ด Apify มาใส่ตรงนี้ทีหลัง)
 @app.post("/scrape")
